@@ -13,7 +13,8 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
-    "react-modal": "^3.8.1"
+    "react-modal": "^3.8.1",
+    "whatwg-fetch": "^3.0.0"
   },
   "keywords": [
     "gatsby"

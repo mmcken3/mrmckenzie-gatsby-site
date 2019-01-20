@@ -1,12 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import 'whatwg-fetch'
 
 import mitchell from '../images/mitchell.png'
 
 class Main extends React.Component {
 
-  handleFormSubmit() {
-    alert("lets get alerting")
+  handleFormSubmit(event) {
+    var fname = document.getElementById("myForm").elements.namedItem("fullname").value;
+    var ead = document.getElementById("myForm").elements.namedItem("email").value;
+    var tmessage = document.getElementById("myForm").elements.namedItem("message").value;
+
+    window.fetch('http://68.183.25.114:3000/v1/send/text', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: fname,
+        login: ead,
+        message: tmessage,
+      })
+    })
+
+    alert("after the fetch")
+
+    event.PreventDefault()
   }
 
   render() {
@@ -45,9 +64,9 @@ class Main extends React.Component {
 
         <article id="about" className={`${this.props.article === 'misc' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Misc</h2>
-          <p>I am a software engineer by day, but in my free time I like to adventure in the outdoors and travel. There are many hobbies I have had through the years that I still enjoy making time for like sailing, scuba diving, and hiking. If you are interested in seeing some photos from my adventures sailing the Atlantic Ocean, visiting the carribean with my family, or hiking throughout the US, then go check out my <a href="https://www.flickr.com/photos/163562214@N08/" target="_blank">Flickr Page</a>.</p>
+          <p>I am a software engineer by day, but in my free time I like to adventure in the outdoors and travel. There are many hobbies I have had through the years that I still enjoy making time for like sailing, scuba diving, and hiking. If you are interested in seeing some photos from my adventures sailing the Atlantic Ocean, visiting the carribean with my family, or hiking throughout the US, then go check out my <a href="https://www.flickr.com/photos/163562214@N08/" target="_blank" rel="noopener noreferrer">Flickr Page</a>.</p>
           {/* <p>Here is one of the photos from my travels:</p> */}
-          <a data-flickr-embed="true"  href="https://www.flickr.com/photos/163562214@N08/46814256901/in/album-72157675770234127/" title="BVI Coastline" target="_blank">
+          <a data-flickr-embed="true"  href="https://www.flickr.com/photos/163562214@N08/46814256901/in/album-72157675770234127/" title="BVI Coastline" target="_blank" rel="noopener noreferrer">
           <span className="flickrimage main">
           <img src="https://farm8.staticflickr.com/7906/46814256901_c73514b815_z.jpg" alt="BVI Coastline"></img>
           </span>
@@ -57,10 +76,10 @@ class Main extends React.Component {
 
         <article id="contact" className={`${this.props.article === 'contact' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Contact</h2>
-          <form method="post" action="#">
+          <form id="myForm" method="post" action="#">
             <div className="field half first">
               <label htmlFor="name">Name</label>
-              <input type="text" name="name" id="name" />
+              <input type="text" name="fullname" id="name" />
             </div>
             <div className="field half">
               <label htmlFor="email">Email</label>
@@ -71,15 +90,15 @@ class Main extends React.Component {
               <textarea name="message" id="message" rows="4"></textarea>
             </div>
             <ul className="actions">
-              <li><input type="submit" value="Send Message" className="special" /></li>
+              <li><input type="submit" value="Send Message" className="special" onClick={this.handleFormSubmit}/></li>
               <li><input type="submit" value="Reset" /></li>
             </ul>
           </form>
           <ul className="icons">
-            <li><a href="https://twitter.com/mit_mckenzie" target="_blank" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
-            <li><a href="https://www.linkedin.com/in/mitchell-mckenzie-533292109/" target="_blank" className="icon fa-linkedin"><span className="label">LinkedIn</span></a></li>
-            <li><a href="https://github.com/mmcken3/" target="_blank" className="icon fa-github"><span className="label">GitHub</span></a></li>
-            <li><a href="https://www.flickr.com/photos/163562214@N08/" target="_blank" className="icon fa-flickr"><span className="label">Flickr</span></a></li>
+            <li><a href="https://twitter.com/mit_mckenzie" target="_blank" rel="noopener noreferrer" className="icon fa-twitter"><span className="label">Twitter</span></a></li>
+            <li><a href="https://www.linkedin.com/in/mitchell-mckenzie-533292109/" target="_blank" rel="noopener noreferrer" className="icon fa-linkedin"><span className="label">LinkedIn</span></a></li>
+            <li><a href="https://github.com/mmcken3/" target="_blank" rel="noopener noreferrer" className="icon fa-github"><span className="label">GitHub</span></a></li>
+            <li><a href="https://www.flickr.com/photos/163562214@N08/" target="_blank" rel="noopener noreferrer" className="icon fa-flickr"><span className="label">Flickr</span></a></li>
           </ul>
           {close}
         </article>
