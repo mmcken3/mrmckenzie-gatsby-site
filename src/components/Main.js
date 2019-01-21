@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import 'whatwg-fetch'
 
 import mitchell from '../images/mitchell.png'
+
+if (process.env.IS_BROWSER) {
+  require('whatwg-fetch');
+}
 
 class Main extends React.Component {
 
@@ -11,21 +14,33 @@ class Main extends React.Component {
     var ead = document.getElementById("myForm").elements.namedItem("email").value;
     var tmessage = document.getElementById("myForm").elements.namedItem("message").value;
 
-    window.fetch('http://68.183.25.114:3000/v1/send/text', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: fname,
-        login: ead,
-        message: tmessage,
+    if (process.env.IS_BROWSER) {
+      window.fetch('http://68.183.25.114:3000/v1/send/text', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: fname,
+          login: ead,
+          message: tmessage,
+        })
       })
-    })
-
-    alert("after the fetch")
-
-    event.PreventDefault()
+    } else {
+      fetch('http://68.183.25.114:3000/v1/send/text', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: fname,
+          login: ead,
+          message: tmessage,
+        })
+      })
+    }
+    event.preventDefault();
+    alert("Contact form was submitted!")
   }
 
   render() {
