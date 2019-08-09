@@ -15,7 +15,7 @@ class Main extends React.Component {
     var tmessage = document.getElementById("myForm").elements.namedItem("message").value;
 
     if (process.env.IS_BROWSER) {
-      window.fetch('http://68.183.25.114:3000/v1/send/text', {
+      window.fetch('http://68.183.25.114:3000/v1/send/email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ class Main extends React.Component {
         })
       })
     } else {
-      fetch('http://68.183.25.114:3000/v1/send/text', {
+      fetch('http://68.183.25.114:3000/v1/send/email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -53,8 +53,8 @@ class Main extends React.Component {
         <article id="intro" className={`${this.props.article === 'intro' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Intro</h2>
           <span className="image main"><img src={mitchell} alt="" /></span>
-          <p>Currently I am a back end engineer at <a href="https://www.redventures.com/">Red Ventures</a>. I am working to maintain large APIs written in GoLang along with building out full scale data pipelines. This work is intriguing to me and I want to continue working with GoLang, APIs, and data engineering issues.</p>
-          <p>My Computer Science, BS, degree came from Clemson University in 2018. If you want to see the resume with descriptions of previous jobs and internships you can check all of that out on <a href="https://www.linkedin.com/in/mitchell-mckenzie-533292109/">LinkedIn</a>. Some of my side projects, and other websites that I have worked on are up on my <a href="https://github.com/mmcken3/">GitHub</a>. A few of the things I like to play with as side projects are web crawlers, metric collectors/pipelines, tools to help development, and websites to keep up with front end tech.</p>
+          <p>Currently I am a back end engineer at <a href="https://www.redventures.com/">Red Ventures</a>. I am working to maintain APIs written in GoLang, architecting cloud services, and building data pipelines. I love this work and I want to continue working with GoLang, APIs, cloud services, and data engineering projects.</p>
+          <p>My Computer Science, BS, degree came from Clemson University in 2018. If you want to see the resume with descriptions of previous jobs and internships you can check all of that out on <a href="https://www.linkedin.com/in/mitchell-mckenzie-533292109/">LinkedIn</a>. Some of my side projects, and other websites that I have worked on are up on my <a href="https://github.com/mmcken3/">GitHub</a>. These side projects are things like web crawlers, metric collectors/pipelines, tools to help development, and websites to keep up with front end tech.</p>
           {close}
         </article>
 
@@ -77,17 +77,17 @@ class Main extends React.Component {
           {close}
         </article> */}
 
-        <article id="about" className={`${this.props.article === 'misc' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
+        {/* <article id="about" className={`${this.props.article === 'misc' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Misc</h2>
           <p>I am a software engineer by day, but in my free time I like to adventure in the outdoors and travel. There are many hobbies I have had through the years that I still enjoy making time for like sailing, scuba diving, and hiking. If you are interested in seeing some photos from my adventures sailing the Atlantic Ocean, visiting the carribean with my family, or hiking throughout the US, then go check out my <a href="https://www.flickr.com/photos/163562214@N08/" target="_blank" rel="noopener noreferrer">Flickr Page</a>.</p>
-          {/* <p>Here is one of the photos from my travels:</p> */}
-          <a data-flickr-embed="true"  href="https://www.flickr.com/photos/163562214@N08/46814256901/in/album-72157675770234127/" title="BVI Coastline" target="_blank" rel="noopener noreferrer">
+          <p>Here is one of the photos from my travels:</p> */}
+          {/* <a data-flickr-embed="true"  href="https://www.flickr.com/photos/163562214@N08/46814256901/in/album-72157675770234127/" title="BVI Coastline" target="_blank" rel="noopener noreferrer">
           <span className="flickrimage main">
           <img src="https://farm8.staticflickr.com/7906/46814256901_c73514b815_z.jpg" alt="BVI Coastline"></img>
           </span>
           </a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
           {close}
-        </article>
+        </article> */}
 
         <article id="contact" className={`${this.props.article === 'contact' ? 'active' : ''} ${this.props.articleTimeout ? 'timeout' : ''}`} style={{display:'none'}}>
           <h2 className="major">Contact</h2>
